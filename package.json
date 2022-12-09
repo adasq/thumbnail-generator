@@ -1,0 +1,25 @@
+{
+  "name": "thumbnail-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adasq/thumbnail-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adasq/thumbnail-generator/issues"
+  },
+  "homepage": "https://github.com/adasq/thumbnail-generator#readme",
+  "dependencies": {
+    "@hapi/hapi": "21.1.0",
+    "node-fetch": "3.3.0",
+    "node-html-to-image": "3.2.4"
+  }
+}
