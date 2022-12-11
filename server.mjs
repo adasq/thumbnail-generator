@@ -15,6 +15,41 @@ import Hapi from '@hapi/hapi';
             return 'hi';
         }
     });
+    
+     server.route({
+        method: 'POST',
+        path: '/thumbnail',
+        config: {
+            payload: {
+              maxBytes: 209715200,
+            }
+          },
+        handler: async (request, h) => {
+            console.log('request.query')
+            console.log(request.query)
+            console.log('request.payload')
+            console.log(request.payload)
+
+            const { templateUrl, ...params } = request.payload;
+            console.log('params', params)
+            console.log('templateUrl', templateUrl)
+            
+            if(!templateUrl) return 'no templateUrl specified';
+
+            try {
+                 const image = await createThumbnail({
+                    templateUrl,
+                    params
+                })
+                const response = h.response(image);
+                response.type('image/jpg');
+                return response;
+            } catch(err) {
+                console.log(err);
+                return err;
+            }
+        }
+    });
 
     server.route({
         method: 'GET',
