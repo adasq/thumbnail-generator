@@ -16,6 +16,8 @@ export const createThumbnail = async ({ templateUrl, params }, output) => {
     return await nodeHtmlToImage({
         output: output || './dist/thumbnail.png',
         quality: 100,
+        type: 'png',
+        transparent: true,
         puppeteerArgs: {
             headless: true,
             args: [
