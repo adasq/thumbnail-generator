@@ -71,7 +71,7 @@ import Hapi from '@hapi/hapi';
                     params
                 })
                 const response = h.response(image);
-                response.type('image/jpg');
+                response.type('image/png');
                 return response;
             } catch(err) {
                 console.log(err);
