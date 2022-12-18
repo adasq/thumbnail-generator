@@ -9,7 +9,7 @@ export const createThumbnail = async ({ templateUrl, params }, output) => {
         .replace('PARAMS = {}', `PARAMS = ${JSON.stringify(params || {})}`)
 
     Object.entries(params).map(([key, value]) => {
-        template = template.replace(`{{${key}}}`, value);
+        template = template.replaceAll(`{{${key}}}`, value);
     });
     
 
