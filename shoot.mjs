@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import nodeHtmlToImage from 'node-html-to-image';
+import nodeHtmlToImage from 'nhti';
 import fs from 'node:fs';
 import {JSDOM} from 'jsdom'
 
@@ -56,8 +56,10 @@ export const shoot = async ({url, params}, output) => {
         type: 'png',
         transparent: true,
         waitUntil: 'load',
+        timeout: 1000 * 60 * 5,
         puppeteerArgs: {
             headless: true,
+            timeout: 1000 * 60 * 5,
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
