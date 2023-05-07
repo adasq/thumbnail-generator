@@ -1,5 +1,7 @@
 import {createThumbnail} from './thumbnail.mjs'
 import Hapi from '@hapi/hapi';
+import fs from 'node:fs';
+import nodeHtmlToImage from 'nhti';
 import {shoot} from "./shoot.mjs";
 
 ;(async () => {
@@ -40,6 +42,52 @@ import {shoot} from "./shoot.mjs";
                 const image = await createThumbnail({
                     templateUrl,
                     params
+                })
+                const response = h.response(image);
+                response.type('image/jpg');
+                return response;
+            } catch (err) {
+                console.log(err);
+                return err;
+            }
+        }
+    });
+
+        server.route({
+        method: 'POST',
+        path: '/html',
+        config: {
+            payload: {
+                // maxBytes: 209715200,
+            }
+        },
+        handler: async (request, h) => {
+            console.log('request.query')
+            console.log(request.query)
+            console.log('request.payload')
+            console.log(request.payload)
+
+            let {html} = request.payload;
+            // html = fs.readFileSync('./page.html').toString();
+            console.log('params', html)
+
+            try {
+            const image =  await nodeHtmlToImage({
+                    quality: 100,
+                    type: 'png',
+                    transparent: true,
+                    waitUntil: 'load',
+                    timeout: 1000 * 60 * 5,
+                    puppeteerArgs: {
+                        headless: true,
+                        timeout: 1000 * 60 * 5,
+                        args: [
+                            '--no-sandbox',
+                            '--disable-setuid-sandbox',
+                        ]
+                    },
+                    content: {},
+                    html: html
                 })
                 const response = h.response(image);
                 response.type('image/jpg');
