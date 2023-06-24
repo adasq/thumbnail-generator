@@ -1,6 +1,6 @@
 # thumbnail-generator
 
-Generate a thumbnail picture (1280 x 720) based on provided HTML.
+Generate a thumbnail picture (1280 x 720) based on a provided HTML template
 
 
 # Demo example
