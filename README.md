@@ -21,7 +21,7 @@ https://thumbnail-generator.onrender.com/thumbnail?a
 ### Output (image):
 
 ![](docs/example.png)
-https://thumbnail-generator.onrender.com/thumbnail?templateUrl=https://sjgsyl.csb.app/&title=Greetings from github.com&leftPanelCopy=This is a left panel copy
+https://thumbnail-generator.onrender.com/thumbnail?templateUrl=https://sjgsyl.csb.app/&title=Greetings%20from%20github.com&leftPanelCopy=This%20is%20a%20left%20panel%20copy
 
 # How to run
 
