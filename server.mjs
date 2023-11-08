@@ -3,7 +3,7 @@ import Hapi from '@hapi/hapi';
 import fs from 'node:fs';
 import nodeHtmlToImage from 'nhti';
 import {shoot} from "./shoot.mjs";
-
+console.log = () => {}
 ;(async () => {
 
     const server = Hapi.server({
