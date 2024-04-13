@@ -1,0 +1,26 @@
+name: booksy
+
+on:
+  repository_dispatch: {}
+  workflow_dispatch: {}
+#  schedule:
+#  - cron: 0 9,12,16 1-31 * *
+  push:
+    branches:
+      - feature
+
+
+jobs:
+  booksy:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-node@main
+      with:
+        node-version: 18.x
+    - uses: actions/checkout@main
+    - run: npm install
+    - name: check
+      id: check
+      run: |
+        node shoot.mjs
+        

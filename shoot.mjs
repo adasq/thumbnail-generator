@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {JSDOM} from 'jsdom'
 
 
+
 const cookies = [
     "_cmuid=1dc68e0f-1b57-4030-b66e-42c94650c10f; wdctx=v5.dl_bYVxyFxHGgKPd7IFU-1rcI8RglW0yxJj8ATC8WvNeh3TPXHCw2ncKwM8xfMMT6dd6_FXsh-uiI91889QxCo1X0ObuXwWmoGjTpVHyeLu6y1XK_cpsgf8sXo71mUU8YofczgVBx4IeNHctWtY0bgPxJjgW0xi0kdgotayRGkR2-irXdi4iAHhGl29kkfphIYyVYmW92TxGdwVnSwuGfqNRIEKPAvMvM3IyOrFJF-A.8Va3IhamTwagzaDW_0wCcA.iYlEtTLn3cE; gdpr_permission_given=1; __gfp_64b=-TURNEDOFF; datadome=KysLnQb9FM5KNMTX9AIY0vKRhG8j6iQuLaTyjtjb7MbW10UJ6_nL_zye2XbY2a~j8NNMqhl~avfEQqfg54VHFYMKHDJ_x5jWqd4QZ4QfwgDFdlB8EzXKyyK7mPtlNEJF", // new 1
     "_cmuid=1dc68e0f-1b57-4030-b66e-42c94650c10f; wdctx=v5.vs9nRZFyqRkJVWDHzhsaPaAoThwfY8rUym3z-niZP_BNKzy8CiumKuz0pWCBW-Zm6w0RWkP3lecr7PYmeOdY0Z7aVQLtFFDyue9c-g8SdTRdN1GCAuT2kSTwZREOaj9_kgHaNGx1q1RVQ00FP8L7fx3Xp58KkIaxsi2p2Gxg2fHhKiGerILYQ9xhAG1p-rJyoCXmVLFYlDGkMg8fl01_3wWwr56ZIZRWnGuxvTr_3qM.TNCs2uGGRxaIR7sC0nAAEg.fHwEoKUTlaI; __gfp_64b=-TURNEDOFF; datadome=F0Jfj6XA7Ka3VE0JqBwEpcJo~krjvjekHdXrPewEcTW2ZjqRGSkH6ArQazfQK4iJOwY_sqnoXoxBKOTRwPF74b4PP_Wc~XEhKY8qFXMF1aWT_i1JFMSgrLSKMRj7kFFv", // new 2
@@ -57,7 +58,7 @@ export const shoot = async ({url, params}, output) => {
     const dom = new JSDOM(html);
     const elem = dom.window.document.querySelector('[data-box-name="allegro.showoffer.columns"]')
     if (!elem) {
-        return console.log(html)
+        return html;
     }
     dom.window.document.body.innerHTML = '<style>body {width: 1248px !important}</style>';
     dom.window.document.body.appendChild(elem)
@@ -82,4 +83,13 @@ export const shoot = async ({url, params}, output) => {
         content: {},
         html
     })
+}
+
+if(process.env.CI) {
+    ;(async () => {
+        console.log('CI!');
+        fs.writeFileSync('./test.png', await shoot({}))
+        console.log('done!');
+
+    })()
 }
