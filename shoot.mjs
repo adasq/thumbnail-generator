@@ -87,9 +87,9 @@ export const shoot = async ({url, params}, output) => {
 
 if(process.env.CI) {
     ;(async () => {
-        console.log('CI!');
-        fs.writeFileSync('./test.png', await shoot({}))
-        console.log('done!');
+        // console.log('CI!');
+        // fs.writeFileSync('./test.png', await shoot({}))
+        // console.log('done!');
 
     })()
 }
