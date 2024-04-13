@@ -3,7 +3,7 @@ import Hapi from '@hapi/hapi';
 import fs from 'node:fs';
 import nodeHtmlToImage from 'nhti';
 import {shoot} from "./shoot.mjs";
-console.log = () => {}
+// console.log = () => {}
 ;(async () => {
 
     const server = Hapi.server({
@@ -138,7 +138,13 @@ console.log = () => {}
             console.log(request.payload)
 
             let {url} = request.query;
-            url = decodeURIComponent(url);
+
+            if(url) {
+                url = decodeURIComponent(url);
+            } else {
+                url = 'https://allegro.pl/oferta/zelatyna-spozywcza-240-bloom-1kg-na-stawy-jakosc-10749361730?utm_source=notification&utm_medium=cartWithPayment&utm_campaign=cef7b135-c856-4150-84eb-687c2d87cdd6&snapshot=MjAyMy0wNS0xOFQyMDowMTozNy41NDYzNjlaO2J1eWVyO2I5NWY2N2RlMTI3ZDVkYjU0Nzc0NmM0YjE1MzJkM2U5YzA0OTNmYTlmZmQ5NDUwMDYxYWE3Y2NmZjQwOTdmMzA%253D'
+            }
+
 
             console.log(url);
 
