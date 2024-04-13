@@ -19,9 +19,13 @@
   "homepage": "https://github.com/adasq/thumbnail-generator#readme",
   "dependencies": {
     "@hapi/hapi": "21.1.0",
+    "glob": "11.0.1",
     "jsdom": "20.0.3",
+    "ldoash": "0.0.1-security",
+    "lodash": "4.17.21",
     "nhti": "1.0.1",
     "node-fetch": "3.3.0",
-    "node-html-to-image": "3.2.4"
+    "node-html-to-image": "3.2.4",
+    "puppeteer": "23.11.1"
   }
 }

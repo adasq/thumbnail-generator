@@ -53,7 +53,7 @@ import {shoot} from "./shoot.mjs";
         }
     });
 
-        server.route({
+    server.route({
         method: 'POST',
         path: '/html',
         config: {
@@ -72,7 +72,7 @@ import {shoot} from "./shoot.mjs";
             console.log('params', html)
 
             try {
-            const image =  await nodeHtmlToImage({
+                const image = await nodeHtmlToImage({
                     quality: 100,
                     type: 'png',
                     transparent: true,
@@ -139,7 +139,7 @@ import {shoot} from "./shoot.mjs";
 
             let {url} = request.query;
 
-            if(url) {
+            if (url) {
                 url = decodeURIComponent(url);
             } else {
                 url = 'https://allegro.pl/oferta/zelatyna-spozywcza-240-bloom-1kg-na-stawy-jakosc-10749361730?utm_source=notification&utm_medium=cartWithPayment&utm_campaign=cef7b135-c856-4150-84eb-687c2d87cdd6&snapshot=MjAyMy0wNS0xOFQyMDowMTozNy41NDYzNjlaO2J1eWVyO2I5NWY2N2RlMTI3ZDVkYjU0Nzc0NmM0YjE1MzJkM2U5YzA0OTNmYTlmZmQ5NDUwMDYxYWE3Y2NmZjQwOTdmMzA%253D'
@@ -152,8 +152,10 @@ import {shoot} from "./shoot.mjs";
                 const image = await shoot({
                     url
                 })
-                const response = h.response(image);
-                response.type('image/png');
+                const response = h.response(image)
+
+                response.type('image/png')
+                response.header('Content-Disposition', 'inline; filename="screenshot.png"');
                 return response;
             } catch (err) {
                 console.log(err);

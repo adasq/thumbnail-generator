@@ -23,4 +23,3 @@ jobs:
       id: check
       run: |
         node shoot.mjs
-        
